@@ -1,7 +1,7 @@
 {
-  "name": "nestjs-boilerplate",
+  "name": "quantum-nestor-api",
   "version": "0.0.1",
-  "description": "@typescript",
+  "description": "An experimental NestJS backend app for building RESTful APIs using TypeScript, MongoDB, Express.js",
   "author": "Sazal Ahamed <sazal836@gmail.com> (https://sazal.vercel.app)",
   "private": true,
   "license": "MIT",
@@ -22,9 +22,12 @@
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/mapped-types": "^1.2.2",
+    "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "mongoose": "^6.10.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
   },
