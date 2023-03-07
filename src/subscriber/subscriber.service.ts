@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { SubscriberDTO } from './dto';
+import { SubscriberDTO, PartialSubscriberDTO } from './dto';
 import { Subscriber, SubscriberDocument } from './schemas/subscriber.schema';
 
 @Injectable()
@@ -24,6 +24,16 @@ export class SubscriberService {
   async read(id: string): Promise<SubscriberDocument> {
     const subscriber = await this.subscriberModel.findById(id);
     if (!subscriber) throw new NotFoundException(`subscriber not found!`);
+    return subscriber;
+  }
+
+  async update(id: string, dto: PartialSubscriberDTO): Promise<SubscriberDocument> {
+    const { _id } = await this.read(id);
+    const subscriber = await this.subscriberModel.findByIdAndUpdate(_id, dto, {
+      new: true,
+    });
+
+    if (!subscriber) throw new NotFoundException(`failed to update subscriber!`);
     return subscriber;
   }
 }
