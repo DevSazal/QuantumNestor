@@ -13,6 +13,10 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(3000);
+  // port initialize
+  const port = process.env.PORT || 3000;
+  await app.listen(port, () => {
+    console.log(`Listening on port ${port}!`);
+  });
 }
 bootstrap();
