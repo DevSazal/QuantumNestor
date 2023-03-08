@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { SubscriberDTO, PartialSubscriberDTO } from './dto';
@@ -35,5 +35,11 @@ export class SubscriberService {
 
     if (!subscriber) throw new NotFoundException(`failed to update subscriber!`);
     return subscriber;
+  }
+
+  async delete(id: string): Promise<HttpException> {
+    const subscriber = await this.subscriberModel.findByIdAndDelete(id);
+    if (!subscriber) throw new NotFoundException(`failed to delete subscriber!`);
+    throw new HttpException('The data has been deleted successfully', HttpStatus.OK);
   }
 }

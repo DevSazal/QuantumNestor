@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Param, Get, Post, Put, Delete } from '@nestjs/common';
 import { SubscriberDTO, PartialSubscriberDTO } from './dto';
 import { SubscriberService } from './subscriber.service';
 
@@ -24,5 +24,10 @@ export class SubscriberController {
   @Put(':id')
   putSubscriber(@Param('id') id: string, @Body() dto: PartialSubscriberDTO): object {
     return this.subscriberService.update(id, dto);
+  }
+
+  @Delete(':id')
+  deleteSubscriber(@Param('id') id: string): object {
+    return this.subscriberService.delete(id);
   }
 }
